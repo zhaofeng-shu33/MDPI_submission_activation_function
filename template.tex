@@ -181,18 +181,23 @@ Hermite polynomials. This demonstrates the role of the Hermite polynomials in fu
 
 Non-linear activation functions
 are essential to the expressive power of the neural network.
-The current approach to design
-activation function is mainly empirically motivated.
-For example, to obtain better representation of features,
-it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
+It has been shown that with only one hidden layer and choosing sigmoid as activation function,
+we can use neural network to approximate any continuous function\cite{cybenko1989approximation}
+To further improve the network performance for fixed number of hidden nodes,
+the activation function plays a vital role.
+For example, it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
 Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
-Another shortcoming of this approach is that using searched activation function, the network performance cannot be guaranteed for other problems.
-In addition to empirical study, there are also theoretical results
-which investigate specific network architectures.
-For example, ReLU activation function is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
+Another shortcoming of this approach is that using searched activation function,
+the network performance cannot be guaranteed for other problems.
+Even though with the existing empirical study, it is generally unknown how much benefits the optimization of the activation function could bring about.
+since most theoretical works focus on
+investigating other factors except for activation function.
+For example, \cite{kuri2017closed} determines the minimal number of hidden units for a perceptron.
+ReLU is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
 We notice that existing theoretical investigations are restricted on a specific activation function and seldom explore 
 what is the best performance non-linear activation function can achieve for a certain network architecture.
-This problem is also important to unveil the mysterious power of neural network and help engineers to design more powerful architectures.
+This problem is also important to find out the role nonlinearity plays in activation function and help engineers to choose proper one in a
+given network architecture.
 Our study gives preliminary solution to this problem by computing quantitatively
 the change rate of neural network loss brought by the activation function.
 
