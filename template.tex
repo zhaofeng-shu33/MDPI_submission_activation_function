@@ -178,28 +178,32 @@ Hermite polynomials. This demonstrates the role of the Hermite polynomials in fu
 \setcounter{section}{-1} %% Remove this when starting to work on the template.
 
 \section{Introduction}
+Consider a functional approximation problem in which we use $X_1, \dots, X_k$
+to approximate a target vector $Y$.
+When we only use linear combinations $\sum_{i=1}^k w_i X_i$
+to approximate $Y$, we can only achieve
+the mean square error (MSE) $\E[||Y-\sum_{i=1}^k X_i||^2]=\frac{k}{n}$,
+if $Y, X_i$ are i.i.d. Gaussian vectors.
+However, if we introduce a non-linear function $\sigma$ and use
+$\sigma(\sum_{i=1}^k w_i X_i)$ to approximate $Y$, we can achieve
+lower MSE. This paper investigates \textbf{quantitatevely} the MSE non-linear
+approximator achives, compared with its linear counterpart.
 
-Non-linear activation functions
-are essential to the expressive power of the neural network.
-It has been shown that with only one hidden layer and choosing sigmoid as activation function,
-we can use neural network to approximate any continuous function\cite{cybenko1989approximation}
-To further improve the network performance for fixed number of hidden nodes,
-the activation function plays a vital role.
-For example, it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
-Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
-Another shortcoming of this approach is that using searched activation function,
-the network performance cannot be guaranteed for other problems.
-Even though with the existing empirical study, it is generally unknown how much benefits the optimization of the activation function could bring about.
-since most theoretical works focus on
-investigating other factors except for activation function.
-For example, \cite{kuri2017closed} determines the minimal number of hidden units for a perceptron.
-ReLU is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
-We notice that existing theoretical investigations are restricted on a specific activation function and seldom explore 
-what is the best performance non-linear activation function can achieve for a certain network architecture.
-This problem is also important to find out the role nonlinearity plays in activation function and help engineers to choose proper one in a
-given network architecture.
-Our study gives preliminary solution to this problem by computing quantitatively
-the change rate of neural network loss brought by the activation function.
+The functional approximation problem revealed above can also be formulated in 
+the terminology of neural network.
+It is well-known that with only one hidden layer and choosing sigmoid as activation function,
+we can use neural network to approximate any continuous function\cite{cybenko1989approximation}.
+However, this universal approximation theorem only requies the non-linear activation satisfies certain
+regularity conditions and does not tell us which kind of activation function works best
+in a certain problem. This paper shows that the Hermite polynomial is the optimal
+candidate to achieve smallest MSE.
+
+While other works empirically choose better activation functions \cite{ramachandran2017searching},
+to our best knowledge our work firstly quantify the performance gain of functional approxmiation.
+Our formulation not only illustrates the role nonlinearity plays in activation function,
+but more importantly, we provide the closed-form solutions for the non-linear activation function to
+achieve
+the minimal MSE (or neural network loss).
 
 In particular, our work is not restricted to specific family of activation
 functions but only requires the activation function to be 
@@ -215,10 +219,6 @@ We use an averaged mean square error to measure the network loss,
 from which we can obtain universally optimal activation function for the given network,
 and we find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
 validates the previous empirical results \cite{ma2005constructive}.
-
-
-To the best of our knowledge, this is the first work that can explicitly quantify the performance gain in functional approximation,
-and provide the closed-form solutions of the optimal non-linear activation functions for certain classes of neural networks.
 
 % passive and active
 The rest of this paper is organized as follows: In Section \ref{sec:mm}, we formulate the universally optimal activation function problem
@@ -247,6 +247,14 @@ are defined specifically.
 \caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$.}\label{fig:ns}
 \end{figure}
 \section{Related works}
+Even though with the existing empirical study, it is generally unknown how much benefits the optimization of the activation function could bring about.
+since most theoretical works focus on
+investigating other factors except for activation function.
+For example, \cite{kuri2017closed} determines the minimal number of hidden units for a perceptron.
+ReLU is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
+We notice that existing theoretical investigations are restricted on a specific activation function and seldom explore 
+what is the best performance non-linear activation function can achieve for a certain network architecture.
+
 Our study on activation function adopts the approach of statistical learning theory \cite{vapnik1999nature},
 which treats the data sampled from
 probablity distribution and finds a predictive function minimizing the expected value of the loss function.
