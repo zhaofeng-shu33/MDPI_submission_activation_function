@@ -178,28 +178,30 @@ Hermite polynomials. This demonstrates the role of the Hermite polynomials in fu
 \setcounter{section}{-1} %% Remove this when starting to work on the template.
 
 \section{Introduction}
-Consider a functional approximation problem in which we use $X_1, \dots, X_k$
-to approximate a target vector $Y$.
-When we only use linear combinations $\sum_{i=1}^k w_i X_i$
-to approximate $Y$, we can only achieve
-the mean square error (MSE) $\E[||Y-\sum_{i=1}^k X_i||^2]=\frac{k}{n}$,
-if $Y, X_i$ are i.i.d. Gaussian vectors.
+Consider a function approximation problem in which we use $\underline{X}_1, \dots, \underline{X}_k$
+to approximate a target vector $\underline{Y}$.
+When we only use linear combinations $\sum_{i=1}^k w_i \underline{X}_i$
+to approximate $\underline{Y}$, we can only achieve
+the minimal mean square error (MSE) $\frac{k}{n}$,
+if $\underline{Y}, \underline{X}_i$ are i.i.d. Gaussian vectors.
 However, if we introduce a non-linear function $\sigma$ and use
-$\sigma(\sum_{i=1}^k w_i X_i)$ to approximate $Y$, we can achieve
-lower MSE. This paper investigates \textbf{quantitatevely} the MSE non-linear
-approximator achives, compared with its linear counterpart.
+$\sigma(\sum_{i=1}^k w_i \underline{X}_i)$ to approximate $\underline{Y}$,
+we can achieve
+MSE lower than $\frac{k}{n}$. This paper investigates \textbf{quantitatively} the MSE 
+that non-linear
+approximator achieves, compared with its linear counterpart.
 
-The functional approximation problem revealed above can also be formulated in 
+The function approximation problem revealed above can also be formulated in 
 the terminology of neural network.
 It is well-known that with only one hidden layer and choosing sigmoid as activation function,
 we can use neural network to approximate any continuous function\cite{cybenko1989approximation}.
-However, this universal approximation theorem only requies the non-linear activation satisfies certain
+However, this universal approximation theorem only requires the non-linear activation satisfies certain
 regularity conditions and does not tell us which kind of activation function works best
-in a certain problem. This paper shows that the Hermite polynomial is the optimal
-candidate to achieve smallest MSE.
+in a certain problem. On the contrary, this paper shows that the Hermite polynomial is the optimal
+candidate to achieve the smallest MSE in the problem mentioned above.
 
 While other works empirically choose better activation functions \cite{ramachandran2017searching},
-to our best knowledge our work firstly quantify the performance gain of functional approxmiation.
+to our best knowledge this paper is the first work to quantify the performance gain of non-linear function approxmiation.
 Our formulation not only illustrates the role nonlinearity plays in activation function,
 but more importantly, we provide the closed-form solutions for the non-linear activation function to
 achieve
@@ -211,13 +213,14 @@ a perturbation of linear functions.
 This assumption allows us to study the non-linear gain when
 non-linear term is added to the network.
 Such a gain can be expressed quantitatively up to second order approximation.
-In order to obtain non-trivial insight and simplify the expression,
+To simplify the technical analysis while maintaining the non-trivial insight,
 we consider the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
-The network we considered can be regarded as a special ResNet model, which are widely used in deep neural network architecture.
+The network we considered can be regarded as a special ResNet model,
+which is widely used in deep neural network architecture.
 % This network can be regarded as a kind of non-linear regression.
-We use an averaged mean square error to measure the network loss,
+We use an averaged MSE to measure the network loss,
 from which we can obtain universally optimal activation function for the given network,
-and we find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
+and it's found that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
 validates the previous empirical results \cite{ma2005constructive}.
 
 % passive and active
@@ -244,24 +247,24 @@ are defined specifically.
 
 \begin{figure}
 \includegraphics[width=\linewidth]{network_structure.pdf}
-\caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$.}\label{fig:ns}
+\caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$.}
+\label{fig:ns}
 \end{figure}
 \section{Related works}
-Even though with the existing empirical study, it is generally unknown how much benefits the optimization of the activation function could bring about.
-since most theoretical works focus on
-investigating other factors except for activation function.
-For example, \cite{kuri2017closed} determines the minimal number of hidden units for a perceptron.
+Most existing theoretical works to explore the influnce of network structures focus on
+the factor of layers and hidden units.
+For example, \cite{kuri2017closed} determines the minimal number of hidden units for a multi-layered perceptron.
 ReLU is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
-We notice that existing theoretical investigations are restricted on a specific activation function and seldom explore 
+We notice that these works are restricted on a specific activation function and seldom explore 
 what is the best performance non-linear activation function can achieve for a certain network architecture.
 
-Our study on activation function adopts the approach of statistical learning theory \cite{vapnik1999nature},
-which treats the data sampled from
-probablity distribution and finds a predictive function minimizing the expected value of the loss function.
+To compensate this shortcoming, our study on activation function adopts the approach of statistical learning theory \cite{vapnik1999nature},
+which samples the data from
+a probablity distribution and finds a predictive function minimizing the expected value of the loss function.
 Our theoretical result can explain previous empirical studies such as:
 \begin{itemize}
 \item Fixing the network structure, optimizing over parameterized activation function can improve the overall performance\cite{ramachandran2017searching}.
-\item using Hermite orthogonal polynomial as activation function works better than sigmoid
+\item Using Hermite orthogonal polynomial as activation function works better than sigmoid
 under certain conditions \cite{ma2005constructive}.
 \end{itemize}
 
@@ -495,6 +498,7 @@ The following abbreviations are used in this manuscript:\\
 
 \noindent 
 \begin{tabular}{@{}ll}
+MSE & Mean Square Error \\
 ResNets & Residual Neural Networks\\
 PCA & Principal Component Analysis\\
 \end{tabular}
