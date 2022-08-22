@@ -195,7 +195,8 @@ The function approximation problem revealed above can also be formulated in
 the terminology of neural network.
 It is well-known that with only one hidden layer and choosing sigmoid as activation function,
 we can use neural network to approximate any continuous function\cite{cybenko1989approximation}.
-However, this universal approximation theorem only requires the non-linear activation satisfies certain
+However, this universal approximation theorem only requires the non-linear activation functions
+satisfies certain
 regularity conditions and does not tell us which kind of activation function works best
 in a certain problem. On the contrary, this paper shows that the Hermite polynomial is the optimal
 candidate to achieve the smallest MSE in the problem mentioned above.
@@ -220,7 +221,8 @@ which is widely used in deep neural network architecture.
 % This network can be regarded as a kind of non-linear regression.
 We use an averaged MSE to measure the network loss,
 from which we can obtain universally optimal activation function for the given network,
-and it's found that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
+and it's found that the averaged loss is minimized when the activation function is
+the Hermite polynomial, which
 validates the previous empirical results \cite{ma2005constructive}.
 
 % passive and active
