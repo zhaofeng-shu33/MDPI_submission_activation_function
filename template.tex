@@ -183,7 +183,7 @@ to approximate a target function $g$.
 When we only use linear combinations $\sum_{i=1}^k w_i f_i$
 to approximate $g$, we can only achieve
 the minimal mean square error (MSE) $1-\frac{k}{n}$,
-if the value domains of $g, f_i$ has only $N$ elements from $\mathbb{R}$,
+if the value domains of $g, f_i$ has only $n$ elements from $\mathbb{R}$,
 which are i.i.d. sampled from the Gaussian distribution.
 However, if we introduce a non-linear function $\sigma$ and use
 $\sigma(\sum_{i=1}^k w_i g_i)$ to approximate $f$,
@@ -282,18 +282,24 @@ under certain conditions \cite{ma2005constructive}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mathematical Model}\label{sec:mm}
 We consider one-node neural network, whose structure is shown in Figure \ref{fig:ns}.
-This type of network arises from function approximation problems, where a target function $g$, defined in a finite set,
-is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$. %and the domain of definition for $f_i, g$ is a finite set.
-
-A more common interpretation of one-node neural network is to consider a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
+Its input is a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and it outputs a random variable $Y$.
 Our goal is to predict $Y$ using $ \sigma(\sum_{i=1}^k w_i X_i)$.
-For a given sampling result, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$, and
+For a given sampling result, we have $n$ data pairs $(\underline{x}_1, y_1), \dots, (\underline{x}_n, y_n)$, and
 the $\ell_2$ loss function is given by
 $\ell_2(\bm{x},\underline{y}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
 where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the $i$-th column of the feature vector $\bm{x}$ and
 $\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector in elementwise way.
 The optimal weight for a given activation function $\sigma$ is the minimizer of $\ell_2(\bm{x},\underline{y})$.
 
+This type of network arises from function approximation problems, where a target function $g$, defined in a finite set,
+is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$. %and the domain of definition for $f_i, g$ is a finite set.
+Suppose the value domains of $f_i, g$ are with cardinality $n$, 
+then the functions themselves can be completely determined by $n$-dimensional vectors.
+Furthermore, we assume each element from the value domains is sampled from a distribution,
+since we are considering the average performance over different $f, g_i$ pairs.
+Then we can establish a correspondence between
+$g_i$ and $\underline{x}_i$,
+and between $f$ and $\underline{y}$.
 
 
 In our model, we suppose $\bm{x},\underline{y}$ are drawn from
