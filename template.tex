@@ -181,14 +181,14 @@ Hermite polynomials. This demonstrates the role of Hermite polynomials in functi
 Consider a function approximation problem in which we use $f_1, \dots, f_k$
 to approximate a target function $g$.
 When we only use linear combinations $\sum_{i=1}^k w_i f_i$
-to approximate $g$, we can only achieve
-the minimum mean square error (MMSE) $(1-\frac{k}{n})$ on average,
-if the ranges of $g, f_i$ have only $n$ elements from $\mathbb{R}$,
-which are i.i.d. sampled from the Gaussian distribution.
+to approximate $g$, and $g, f_i$ are bijective functions with range consisting of $n(>k)$ elements
+from $\mathbb{R}$,
+the expectation of minimum mean square error (MMSE)  
+is achieved at $(1-\frac{k}{n})$ if elements of ranges of $g, f_i$ are i.i.d. sampled from the Gaussian distribution.
 However, if we introduce a non-linear function $\sigma$ and use
 $\sigma(\sum_{i=1}^k w_i f_i)$ to approximate $g$,
 we can achieve
-an MMSE lower than $(1-\frac{k}{n})$. This paper \textbf{quantitatively} investigates
+an averaged MMSE lower than $(1-\frac{k}{n})$. This paper \textbf{quantitatively} investigates
 the MMSE
 that the non-linear
 approximator achieves, compared with its linear counterpart.
