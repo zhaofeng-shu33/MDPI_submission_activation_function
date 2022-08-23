@@ -182,14 +182,14 @@ Consider a function approximation problem in which we use $f_1, \dots, f_k$
 to approximate a target function $g$.
 When we only use linear combinations $\sum_{i=1}^k w_i f_i$
 to approximate $g$, we can only achieve
-the minimal mean square error (MSE) $1-\frac{k}{n}$ on average,
-if the value domains of $g, f_i$ has only $n$ elements from $\mathbb{R}$,
+the minimum mean square error (MMSE) $(1-\frac{k}{n})$ on average,
+if the ranges of $g, f_i$ have only $n$ elements from $\mathbb{R}$,
 which are i.i.d. sampled from the Gaussian distribution.
 However, if we introduce a non-linear function $\sigma$ and use
-$\sigma(\sum_{i=1}^k w_i g_i)$ to approximate $f$,
+$\sigma(\sum_{i=1}^k w_i f_i)$ to approximate $g$,
 we can achieve
-MSE lower than $\frac{k}{n}$. This paper \textbf{quantitatively} investigates
-the MSE 
+an MMSE lower than $(1-\frac{k}{n})$. This paper \textbf{quantitatively} investigates
+the MMSE
 that the non-linear
 approximator achieves, compared with its linear counterpart.
 
@@ -203,14 +203,14 @@ satisfies certain
 regularity conditions
 and does not tell us which kind of activation function performs best
 in a certain problem. On the contrary, this paper shows that the Hermite polynomial is the optimal
-candidate to achieve the minimal MSE in the problem mentioned above.
+candidate to achieve the MMSE in the problem mentioned above.
 
 While other works empirically choose activation functions \cite{ramachandran2017searching},
 to our best knowledge this paper is the first work to quantify the performance gain of non-linear function approxmiation.
 Our formulation not only illustrates the role nonlinearity plays in activation function,
 but more importantly, we provide the closed-form solutions for the non-linear activation function to
 achieve
-the minimal MSE.
+the MMSE.
 
 In particular, our work is not restricted to specific family of activation
 functions but only requires the activation function to be 
@@ -224,7 +224,7 @@ we follow the one-node neural network which outputs one-dimensional feature \cit
 The network we consider can be regarded as a special ResNet model,
 which is widely used in deep neural network architectures.
 % This network can be regarded as a kind of non-linear regression.
-We use an averaged MSE to measure the network loss,
+We use an averaged MMSE to measure the network loss,
 from which we can obtain the universally optimal activation function for the given network,
 and it is found that the averaged loss is minimized when the activation function is
 the Hermite polynomial, which
@@ -293,13 +293,13 @@ The optimal weight for a given activation function $\sigma$ is the minimizer of 
 
 This type of network arises from function approximation problems, where a target function $g$, defined in a finite set,
 is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$. %and the domain of definition for $f_i, g$ is a finite set.
-Suppose the value domains of $f_i, g$ are with cardinality $n$, 
+Suppose the ranges of $f_i, g$ are with cardinality $n$, 
 then the functions themselves can be completely determined by $n$-dimensional vectors.
-Furthermore, we assume each element from the value domains is sampled from a distribution,
-since we are considering the average performance over different $f, g_i$ pairs.
+Furthermore, we assume each element from the ranges of $f_i, g$ is sampled from a distribution,
+since we are considering the average performance over different $f_i, g$ pairs.
 Then we can establish a correspondence between
-$g_i$ and $\underline{x}_i$,
-and between $f$ and $\underline{y}$.
+$f_i$ and $\underline{x}_i$,
+and between $g$ and $\underline{y}$.
 
 
 In our model, we suppose $\bm{x},\underline{y}$ are drawn from
@@ -515,7 +515,7 @@ The following abbreviations are used in this manuscript:\\
 
 \noindent 
 \begin{tabular}{@{}ll}
-MSE & Mean Square Error \\
+MMSE & Minimum Mean Square Error \\
 ResNets & Residual Neural Networks\\
 PCA & Principal Component Analysis\\
 \end{tabular}
