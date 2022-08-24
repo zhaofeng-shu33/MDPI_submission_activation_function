@@ -180,18 +180,20 @@ Hermite polynomials. This demonstrates the role of Hermite polynomials in functi
 \section{Introduction}
 Consider a function approximation problem in which we use $f_1, \dots, f_k$
 to approximate a target function $g$.
-When we only use linear combinations $\sum_{i=1}^k w_i f_i$
-to approximate $g$, and $g, f_i$ are bijective functions with range consisting of $n(>k)$ elements
+Assume $g, f_i$ are bijective functions with the range consisting of $n(>k)$ elements
 from $\mathbb{R}$,
+and to obtain different functions, we sample elements of ranges of $g, f_i$ from the Gaussian distribution.
+When we only use linear combinations $\sum_{i=1}^k w_i f_i$
+to approximate $g$, 
 the expectation of minimum mean square error (MMSE)  
-is achieved at $(1-\frac{k}{n})$ if elements of ranges of $g, f_i$ are i.i.d. sampled from the Gaussian distribution.
+is achieved at $(1-\frac{k}{n})$.
 However, if we introduce a non-linear function $\sigma$ and use
 $\sigma(\sum_{i=1}^k w_i f_i)$ to approximate $g$,
 we can achieve
 an averaged MMSE lower than $(1-\frac{k}{n})$. This paper \textbf{quantitatively} investigates
 the MMSE
 that the non-linear
-approximator achieves, compared with its linear counterpart.
+approximator achieves, which is lower than its linear counterpart.
 
 The function approximation problem revealed above can also be formulated in 
 the terminology of neural networks.
@@ -317,7 +319,7 @@ We formulate the universally optimal activation function $\sigma$ as follows:
 \begin{Definition}\label{def:ug}
 Let $(\bm{X}, \underline{Y})$ follow distribution $G$ and
 $\mathcal{F}$ a function space for $\sigma(z)$. Then
-we define the averaged estimation error $\mathrm{E}[\sigma]$ as
+we define the averaged MMSE $\mathrm{E}[\sigma]$ as
 \begin{align}\label{eq:ug}
 \mathrm{E}(\sigma) \triangleq & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] 
 %s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
@@ -351,7 +353,7 @@ Based on the distribution space $G$ by 1)\,-3), for linear function space, we ha
 We have $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ where $\sigma_0(z) = z$ is the identity function.
 \end{Proposition}
 
-Proposition \ref{prop:linear} says that the averaged estimation error $\mathrm{E}$ for linear function is equal to $1-\frac{k}{n}$,
+Proposition \ref{prop:linear} says that the averaged MMSE $\mathrm{E}$ for linear function is equal to $(1-\frac{k}{n})$,
 which is consistent with our intuition
 since we use $k$ degrees of freedom to estimate arbitrary vector in $n$-dimensional space.
 
