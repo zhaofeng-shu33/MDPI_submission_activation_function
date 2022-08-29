@@ -3,3 +3,4 @@ build
 *to.pdf
 *.zip
 cover_letter.pdf
+.vscode

@@ -200,14 +200,14 @@ the terminology of neural networks.
 It is well-known that with only one hidden layer and choosing sigmoid as
 the activation function,
 we can use neural networks to approximate any continuous function \cite{cybenko1989approximation}.
-However, this universal approximation theorem requires the non-linear activation function
+However, this universal approximation theorem requires that the non-linear activation function
 satisfies certain
 regularity conditions
 and does not tell us which kind of activation function performs best
 in a certain problem. On the contrary, this paper shows that the Hermite polynomial is the optimal
 candidate to achieve the MMSE in the problem mentioned above.
 
-While other works empirically choose activation functions \cite{ramachandran2017searching},
+While previous works empirically choose activation functions \cite{ramachandran2017searching},
 to our best knowledge this paper is the first work to quantify the performance gain of non-linear function approxmiation.
 Our formulation not only illustrates the role nonlinearity plays in activation function,
 but more importantly, we provide the closed-form solutions for the non-linear activation function to
@@ -221,10 +221,10 @@ This assumption allows us to study the non-linear gain when
 a non-linear term is added to the network.
 Such a gain can be expressed quantitatively up to
 the second order approximation of $(1-\frac{k}{n})$.
-To simplify the technical analysis while maintaining the non-trivial insight,
-we follow the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
+To simplify the technical analysis,
+we use the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
 The network we consider can be regarded as a special ResNet model,
-which is widely used in deep neural network architectures.
+which is widely used as a building block in deep neural network architectures.
 % This network can be regarded as a kind of non-linear regression.
 We use an averaged MMSE to measure the network loss,
 from which we can obtain the universally optimal activation function for the given network,
@@ -264,16 +264,15 @@ are defined specifically.
 \label{fig:ns}
 \end{figure}
 \section{Related works}
-Most existing theoretical works to explore the influnce of network structures focus on
+To explore the influence of network structures, most existing theoretical works focus on
 the factor of layers and hidden units.
-For example, \cite{kuri2017closed} determines the minimal number of hidden units for a multi-layered perceptron.
+For example, Kuri-Morales determines the minimal number of hidden units for a multilayer perceptron \cite{kuri2017closed}.
 ReLU is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
-We notice that these works are restricted on a specific activation function and seldom explore 
-what is the best performance non-linear activation function can achieve for a certain network architecture.
+We notice that these works are restricted to a specific activation function and seldom explore 
+the best performance that non-linear activation function can achieve for a certain network architecture.
 
 To compensate this shortcoming, our study on activation function adopts the approach of statistical learning theory \cite{vapnik1999nature},
-which samples the data from
-a probablity distribution and finds a predictive function minimizing the expected value of the loss function.
+which regards the learning problem from the view of probability.
 Our theoretical result can explain previous empirical studies such as:
 \begin{itemize}
 \item Fixing the network structure, optimizing over parameterized activation function can improve the overall performance \cite{ramachandran2017searching}.
