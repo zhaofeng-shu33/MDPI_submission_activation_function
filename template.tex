@@ -185,13 +185,13 @@ from $\mathbb{R}$,
 and to obtain different functions, we sample elements of ranges of $g, f_i$ from the Gaussian distribution.
 When we only use linear combinations $\sum_{i=1}^k w_i f_i$
 to approximate $g$, 
-the expectation of minimum mean square error (MMSE)  
+the expectation of minimal residual sum of squares (RSS)
 is achieved at $(1-\frac{k}{n})$.
 However, if we introduce a non-linear function $\sigma$ and use
 $\sigma(\sum_{i=1}^k w_i f_i)$ to approximate $g$,
 we can achieve
-an averaged MMSE lower than $(1-\frac{k}{n})$. This paper \textbf{quantitatively} investigates
-the MMSE
+an averaged RSS lower than $(1-\frac{k}{n})$. This paper \textbf{quantitatively} investigates
+the RSS
 that the non-linear
 approximator achieves, which is lower than its linear counterpart.
 
@@ -206,13 +206,14 @@ satisfies certain
 regularity conditions
 and does not tell us which kind of activation function performs best
 in a certain problem. On the contrary, this paper shows that the Hermite polynomial is the optimal
-candidate to achieve the MMSE in the problem mentioned above.
+candidate to achieve the minimal RSS in the problem mentioned above.
 
 Moreover, note that most of the previous works along this direction
 focused on providing upper and lower bounds \cite{yarotsky2017error}
 of the function approximation performance without closed-form characterizations.
 On the other hand, our formulation not only illustrates the role nonlinearity plays in activation function,
-but more importantly, we provide the closed-form solutions for the non-linear activation function to achieve the MMSE.
+but more importantly, we provide the closed-form solutions for the non-linear activation function to achieve the
+minimal RSS.
 To the best of our knowledge,
 this is the first work that demonstrates how profitable that non-linear functions can be in a tight formulation.
 
@@ -228,7 +229,7 @@ we use the one-node neural network which outputs one-dimensional feature \cite{d
 The network we consider can be regarded as a special ResNet model,
 which is widely used as a building block in deep neural network architectures.
 % This network can be regarded as a kind of non-linear regression.
-We use an averaged MMSE to measure the network loss,
+We use RSS to measure the network loss,
 from which we can obtain the universally optimal activation function for the given network,
 and it is found that the averaged loss is minimized when the activation function is
 the Hermite polynomial, which
@@ -309,18 +310,21 @@ In our model, we suppose $\bm{x},\underline{y}$ are drawn from
 a joint distribution $G$.
 That is, $\bm{x},\underline{y}$ are samples of random matrix $\bm{X}$ and random vector $\underline{Y}$.
 We are interested to find a function $\sigma$ which minimizes
-$\E[ \min_{\underline{w}} \ell_2(\bm{X},\underline{Y})]$.
-Our requirement of the activation function $\sigma$ is that
+the expectation $\E[ \min_{\underline{w}} \ell_2(\bm{X},\underline{Y})]$.
+Our requirement of the activation function $\sigma$ is of the special form
 $\sigma(z) = z + \epsilon \xi(z)$ where
-$\epsilon$ is a small constant. The non-linear term should satisfy the normalization constraint
-$\E[\xi(\bm{X}\underline{w})]=1$ where
+$\epsilon$ is a small constant. Such a form of $\sigma$
+can be regarded as a special kind of ResNet \cite{resnet16}.
+To make fair comparison between different
+non-linear term $\xi$ for given $\epsilon$, we apply the normalization constraint
+$\E[\xi(\bm{X}\underline{w})]=1$ to $\xi$, where
 $\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ is the matrix-vector product with  $\underline{w}=(w_1, \dots, w_k)$.
 
 We formulate the universally optimal activation function $\sigma$ as follows:
 \begin{Definition}\label{def:ug}
-Let $(\bm{X}, \underline{Y})$ follow distribution $G$ and
+Assume $(\bm{X}, \underline{Y})$ follow distribution $G$, and
 $\mathcal{F}$ a function space for $\sigma(z)$. Then
-we define the averaged MMSE $\mathrm{E}[\sigma]$ as
+we define the averaged residual error $\mathrm{E}[\sigma]$ as
 \begin{align}\label{eq:ug}
 \mathrm{E}(\sigma) \triangleq & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] 
 %s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
@@ -518,7 +522,7 @@ The following abbreviations are used in this manuscript:\\
 
 \noindent 
 \begin{tabular}{@{}ll}
-MMSE & Minimum Mean Square Error \\
+RSS & Residual Sum of Squares \\
 ResNets & Residual Neural Networks\\
 PCA & Principal Component Analysis\\
 \end{tabular}
