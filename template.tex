@@ -339,7 +339,7 @@ i.e. $\sigma^* = \arg\min_{\sigma \in \mathcal{F}} \mathrm{E}(\sigma)$.
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get analytical insights we should choose some specific distribution.
 Therefore, in the following analysis, we assume:
-\begin{enumerate}
+\begin{enumerate}[label={\arabic*)}]
 \item $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$.
 \item $\bm{X}$ is a $n\times k$ uniformly distributed random orthogonal matrix.
 \item $\underline{Y}$ and $\bm{X}$ are independent.
@@ -353,6 +353,10 @@ we make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underli
 We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$.
 %This completes the definition of the distribution space $G$.
 %Such choice makes it possible for the analytical analysis of the averaged estimation error.
+\added{For assumption 3), notice that when we project a random vector $\underline{Y}$ into a fixed linear subspace,
+$\underline{Y}$ is independent from the fixed space.
+When we are evaluating the representability of non-linear activation, we also choose a scenerario in which the input and output are independent
+to demonstrate that the non-linearity, instead of the correlation, helps to decrease the residual error.}
 Based on the distribution space $G$ by 1)\,-3), for linear function space, we have the following conclusion:
 
 \begin{Proposition}\label{prop:linear}
