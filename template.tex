@@ -288,6 +288,10 @@ under certain conditions \cite{ma2005constructive}.
 \section{\replaced{Models and methods}{Mathematical Model}}\label{sec:mm}
 We consider one-node neural network, whose structure is shown in Figure \ref{fig:ns}.
 Its input is a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and it outputs a random variable $Y$.
+\added{The one-node neural network is the output layer in a complex neural network for regression task, where
+$\underline{X}$ is the extracted feature vector by previous layers.
+Though our study focuses on this specific network structure, we enlarge the choice of activation term $\sigma$ to find insights
+for the best choice of activation functions.}
 Our goal is to predict $Y$ using $ \sigma(\sum_{i=1}^k w_i X_i)$.
 For a given sampling result, we have $n$ data pairs $(\underline{x}_1, y_1), \dots, (\underline{x}_n, y_n)$, and
 the $\ell_2$ loss function is given by
@@ -485,7 +489,8 @@ higher degree terms contribute more.
 
 In this paper, we have investigated the mechanism of non-linearity in one-node neural network.
 If we add polynomial perturbation to linear activation function,
-the network loss is linearly decreased as the degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
+the network loss is linearly decreased as the degree of polynomial is increased.
+\added{Currently this work only investigates one-node neural network,} \replaced{h}{H}ow non-linearity works in \deleted{more complex} neural networks \added{with more neurons} will be considered in the future. 
 
 %\section{Proofs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
