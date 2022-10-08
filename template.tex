@@ -99,7 +99,7 @@ $^{2}$ \quad Tsinghua-Berkeley Shenzhen Institute, Shenzhen, China; shaolun.huan
 
 % Current address and/or shared authorship
 \firstnote{Current address: Tsinghua Shenzhen International Graduate School} 
-\secondnote{These authors contributed equally to this work.}
+\secondnote{\deleted{These authors contributed equally to this work.}}
 % The commands \thirdnote{} till \eighthnote{} are available for further notes
 
 %\simplesumm{} % Simple summary
@@ -285,7 +285,7 @@ under certain conditions \cite{ma2005constructive}.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Mathematical Model}\label{sec:mm}
+\section{\replaced{Models and methods}{Mathematical Model}}\label{sec:mm}
 We consider one-node neural network, whose structure is shown in Figure \ref{fig:ns}.
 Its input is a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and it outputs a random variable $Y$.
 Our goal is to predict $Y$ using $ \sigma(\sum_{i=1}^k w_i X_i)$.
@@ -439,7 +439,7 @@ Proposition \ref{prop:quadratic} gives a feasible approach to choose the optimal
 m \ll k$ to write $M_{ij}$ in a concise form. This assumption requires that we should choose low degree polynomials as activation function and the number of node $k$ should be relatively large to represent features. Since computational cost
 is proportional to the degree of polynomials and feature dimensions are usually high, our assumption does not lose practicality. 
 
-\section{Hermite Polynomials}\label{sec:hp}
+\section{Hermite \replaced{p}{P}olynomials}\label{sec:hp}
 
 One of our major results is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions.
 (Probabilists') Hermite polynomials, denoted as $H_m(x),m=1,2,\dots$,
@@ -456,7 +456,7 @@ Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $
 Proposition \ref{prop:value} also gives the expression of the minimal asymptotic error rate, which has linear relation with the degree of Hermite polynomials. This result is obtained
 under the assumption $ m \ll k$. In general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
-\section{Experiment Result}\label{sec:er}
+\section{\replaced{Experimental validation and discussions}{Experiment Result}}\label{sec:er}
 
 To verify the change rate of $C[\xi]$ is linear as we increase the maximal degree of polynomials $m$,
 we conduct a simple experiment with $n=180, k=120$. We use $\xi_m(z)$ from Proposition
@@ -501,7 +501,8 @@ the network loss is linearly decreased as the degree of polynomial is increased.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \authorcontributions{Methodology, validation, formal analysis, writing---original draft preparation: Feng Zhao; Conceptualization,  writing---review and editing, supervision, project administration, funding acquisition:
-Shao-Lun Huang. All authors have read and agreed to the published version of the manuscript.}
+Shao-Lun Huang. \added{These authors contributed equally to this work.}
+All authors have read and agreed to the published version of the manuscript.}
 
 \funding{This research was funded in part by the Shenzhen Science and Technology Program under Grant KQTD20170810150821146, National Key R\&D Program of China under Grant 2021YFA0715202 and High-end Foreign Expert Talent Introduction Plan under Grant G2021032013L.}
 
