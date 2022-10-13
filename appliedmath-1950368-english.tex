@@ -84,11 +84,11 @@
 
 % Author Orchid ID: enter ID or remove command
 \newcommand{\orcidauthorA}{0000-0002-5300-668X} % Add \orcidA{} behind the author's name
-%\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
+\newcommand{\orcidauthorB}{0000-0003-2827-4022} % Add \orcidB{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{\hl{Feng Zhao} $^{1}$\orcidA{} and Shao-Lun Huang $^{2,}$*}
-%MDPI: Please carefully check the accuracy of names and affiliations. 
+\Author{Feng Zhao $^{1}$\orcidA{} and Shao-Lun Huang $^{2,}$*\orcidB{}}
+%MDPI: Please carefully check the accuracy of names and affiliations. checked
 
 %\longauthorlist{yes}
 
@@ -101,10 +101,10 @@
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
 \address{%
-$^{1}$ \quad Department of Electronics Engineering, Tsinghua University, \hl{Beijing,} %MDPI: Please add the postal code (or ZIP code in the U.S.). If the postal code is not available, please provide the P.O. Box.
+$^{1}$ \quad Department of Electronics Engineering, Tsinghua University, Beijing,100089, %MDPI: Please add the postal code (or ZIP code in the U.S.). If the postal code is not available, please provide the P.O. Box. Added
  China; zhaof17@mails.tsinghua.edu.cn\\
-$^{2}$ \quad Tsinghua-Berkeley Shenzhen \hl{Institute,} %MDPI: Please check that the address information is complete. The provided information should be arranged from subordinate to superior.
- \hl{Shenzhen,} China}
+$^{2}$ \quad Tsinghua-Berkeley Shenzhen Institute, Tsinghua University, %MDPI: Please check that the address information is complete. The provided information should be arranged from subordinate to superior. Checked
+ Shenzhen,518000, China}
 
 % Contact information of the corresponding author
 \corres{Corresponding author: shaolun.huang@sz.tsinghua.edu.cn}
@@ -255,7 +255,7 @@ Furthermore, in Section \ref{sec:er}, numerical experiments are conducted to ver
 Section \ref{sec:con} concludes the paper. The detail of proofs of our results are provided in Appendix \ref{sec:Proofs}.
 
 Throughout this paper,
-we use $X,\underline{X}$ and \highlighting{$\bm{X} $} %MDPI: Is the bold necessary?
+we use $X,\underline{X}$ and $\bm{X} $ %MDPI: Is the bold necessary? Yes
  to represent random variables,
 random vectors and
 random matrices. In addition,
@@ -307,7 +307,7 @@ $\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to 
 The optimal weight for a given activation function $\sigma$ is the minimizer of $\ell_2(\bm{x},\underline{y})$.
 \begin{figure}[H]
 \includegraphics[width=13.7cm]{network_structure.pdf}
-\caption{\hl{The} structure of a one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$.}%MDPI: Figure should be after where it is first mentioned in the text. So we move it here, please confirm.
+\caption{The structure of a one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$.}%MDPI: Figure should be after where it is first mentioned in the text. So we move it here, please confirm. I confirm
 \label{fig:ns}
 \end{figure}
 This type of network arises from function approximation problems, where a target function $g$, defined in a finite set,
@@ -804,7 +804,7 @@ Then, we have $ \mathbf{U} \underline{p} = \underline{e}_m$.
     $ \iff (1+x)^{m'} = 0 \,(x=-1)$.
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
-    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN}, we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore, $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \eqref{eq:UUM}, we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore, $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then, $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e}_m$, from Lemma \ref{lemma:Upem}, we have $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials (\cite {NIST:DLMF} Equation \hl{ 18.5.13}). %MDPI: Please check the format is right
+    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN}, we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore, $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \eqref{eq:UUM}, we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore, $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then, $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e}_m$, from Lemma \ref{lemma:Upem}, we have $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials (See \cite {NIST:DLMF} Equation (18.5.13)). %MDPI: Please check the format is right checked
 
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -835,7 +835,7 @@ Yarotsky, D.
 
 \bibitem[Dey \em{et~al.}(2018)Dey, Wang, and Xie]{dey2018approximation}
 Dey, S.S.; Wang, G.; Xie, Y.
-\newblock An Approximation Algorithm for training One-Node ReLU Neural Network.  \hl{\emph{arXiv} \textbf{2018},	arXiv:1810.03592.}%MDPI: Newly added  information. Please confirm.
+\newblock An Approximation Algorithm for training One-Node ReLU Neural Network.  \emph{arXiv} \textbf{2018},	arXiv:1810.03592.%MDPI: Newly added  information. Please confirm. I confirm
 
 
 
@@ -856,14 +856,14 @@ Kuri-Morales, A.
 Arora, R.; Basu, A.; Mianjy, P.; Mukherjee, A.
 \newblock Understanding Deep Neural Networks with Rectified Linear Units.
 \newblock In Proceedings of the 6th International Conference on Learning
-  Representations, {ICLR} 2018, Vancouver, BC, Canada, 30 April--3 May \hl{2018.} %MDPI: Deleted the ``'Conference Track Proceedings,  2018.', please confirm
+  Representations, {ICLR} 2018, Vancouver, BC, Canada, 30 April--3 May 2018. %MDPI: Deleted the ``'Conference Track Proceedings,  2018.', please confirm I confirm
 
   
 
 \bibitem[Vapnik(1999)]{vapnik1999nature}
 Vapnik, V.
 \newblock {\em The Nature of Statistical Learning Theory}; Springer Science \&
-  Business Media:  \hl{Berlin/Heidelberg, Germany,} %newly added information, please confirm
+  Business Media:  New York, US, %newly added information, please confirm  changed 
   1999.
 
 \bibitem[Ramachandran \em{et~al.}(2017)Ramachandran, Zoph, and
@@ -876,8 +876,8 @@ Ramachandran, P.; Zoph, B.; Le, Q.V.
 He, K.; Zhang, X.; Ren, S.; Sun, J.
 \newblock Deep Residual Learning for Image Recognition.
 \newblock In Proceedings of the 2016 IEEE Conference on Computer Vision and
-  Pattern Recognition (CVPR),  \hl{Las Vegas, Nevada, USA, 27--30 June 2016;} pp. 770--778.
-\newblock {{https://doi.org/10.1109/CVPR.2016.90}}.%newly added information, please confirm
+  Pattern Recognition (CVPR),  Las Vegas, Nevada, USA, 27--30 June 2016; pp. 770--778.
+\newblock {{https://doi.org/10.1109/CVPR.2016.90}}.%newly added information, please confirm // I confirm
 
 \bibitem[Easton(1989)]{eaton1989group}
 Easton, M.L. Chapter 7: Random orthogonal matrices.
@@ -899,7 +899,7 @@ Zhao, F.
 
 \bibitem[{\relax DLMF}()]{NIST:DLMF}
 { NIST Digital Library of Mathematical Functions}. Release 1.0.25 of 2019-12-15.
-\newblock  Available online: \url{http://dlmf.nist.gov/}  \hl{(accessed on).} %MDPI: Please add day month year, and it should be before the submission date (19 September 2022)
+\newblock  Available online: \url{http://dlmf.nist.gov/}  (accessed on September 5th 2021). %MDPI: Please add day month year, and it should be before the submission date (19 September 2022) // added
 
 
 \end{thebibliography}
