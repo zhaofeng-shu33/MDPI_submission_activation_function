@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%	MDPI class for LaTeX files	 09 July 2022
+%%%%	MDPI class for LaTeX files	 25 December 2021
 %% %%	For any information please send an e-mail to:
 %% %%		latex@mdpi.com
 %% %%
@@ -21,7 +21,7 @@
 
 %% IDENTIFICATION
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Definitions/mdpi}[09/07/2022 MDPI paper class]
+\ProvidesClass{Definitions/mdpi}[28/12/2021 MDPI paper class]
 
  %% PRELIMINARY DECLARATIONS
 \LoadClass[10pt,a4paper]{article}
@@ -58,7 +58,8 @@
 \RequirePackage{tabularx}
 \RequirePackage{pbox} % For biography environment
 \RequirePackage{ragged2e} % For command \justifying
-\RequirePackage[]{tocloft} % For dots in TOC. If subfigure package is loaded, the subfigure option needs to be added here to avoid clash: \RequirePackage[subfigure]{tocloft}
+\RequirePackage{subfigure} % Needed because of clash with tocloft package.
+\RequirePackage[subfigure]{tocloft} % For dots in TOC. Subfigure option needed because of clash with subfigure package.
 \RequirePackage{marginnote} % For left column
 \reversemarginpar % To have the left column on the left side
 \RequirePackage{marginfix} % For command \clearmargin for manually moving the left column to the next page
@@ -247,7 +248,6 @@
 		\OR \equal{\@journal}{econometrics}
 		\OR \equal{\@journal}{economies}
 		\OR \equal{\@journal}{genealogy}
-		\OR \equal{\@journal}{histories}
 		\OR \equal{\@journal}{humanities}
 		\OR \equal{\@journal}{ijfs}
 		\OR \equal{\@journal}{jintelligence}
@@ -255,10 +255,10 @@
 		\OR \equal{\@journal}{jrfm}
 		\OR \equal{\@journal}{languages}
 		\OR \equal{\@journal}{laws}
-		\OR \equal{\@journal}{literature}
 		\OR \equal{\@journal}{religions}
 		\OR \equal{\@journal}{risks}
 		\OR \equal{\@journal}{socsci}
+		\OR \equal{\@journal}{literature}
 		}
 }
 
@@ -306,7 +306,6 @@
 \definecolor{bluecite}{HTML}{0875b7}
 
 % After TeXLive 2021, \AddToHook{begindocument} is needed to make sure that hyperref is loaded last. \ifdef{\AddToHook{begindocument}}{ is needed for backwards-compatibility because \AddToHook{begindocument} did not yet exist in 2020.
-% After TeXLive 2022, \AddToHook{begindocument/before}{} is needed and  \DeclareHookRule{begindocument}{hyperref}{before}{mdpi} needs to be added because of the new version of hyperref.
 \newcommand{\hyperrefpackage}{
 \ifthenelse{\equal{\@arttype}{Book}}{
 	\RequirePackage[unicode=true,
@@ -346,8 +345,7 @@
 }
 }
 \ifdef{\AddToHook}{
-\DeclareHookRule{begindocument}{hyperref}{before}{mdpi}
-	\AddToHook{begindocument/before}{ 
+	\AddToHook{begindocument}{ 
 		\hyperrefpackage
 		}
 	}{
@@ -528,8 +526,6 @@
 \newcommand{\LSID}[1]{\gdef\@LSID{#1}}
 \def\@datereceived{}
 \newcommand{\datereceived}[1]{\gdef\@datereceived{#1}} 
-\def\@daterevised{}
-\newcommand{\daterevised}[1]{\gdef\@daterevised{#1}} 
 \def\@dateaccepted{}
 \newcommand{\dateaccepted}[1]{\gdef\@dateaccepted{#1}} 
 \newcommand{\datepublished}[1]{\gdef\@datepublished{#1}} 
@@ -587,15 +583,10 @@
 \newcommand{\reftitle}[1]{\gdef\@reftitle{#1}}
 \def\@longauthorlist{}
 \newcommand{\longauthorlist}[1]{\gdef\@longauthorlist{#1}}
-\def\@encyclopediadef{}
-\newcommand{\encyclopediadef}[1]{\gdef\@encyclopediadef{#1}}
-\def\@addhighlights{}
-\newcommand{\addhighlights}[1]{\gdef\@addhighlights{#1}}
-
 
 %% ORCID
 % Make Orcid icon
-\newcommand{\orcidicon}{\includegraphics[width=0.32cm]{Definitions/logo-orcid.pdf}}
+\newcommand{\orcidicon}{\includegraphics[width=0.32cm]{Definitions/logo-orcid.eps}}
 
 % Define link and button for each author
 \foreach \x in {A, ..., Z}{%
@@ -627,7 +618,7 @@
 			\fancyhead[R]{
 				\footnotesize %
 				S\thepage{} of S\pageref*{LastPage}%
-				\\\rule{\fulllength}{0.4pt}%
+				\\\rule{\textwidth}{0.4pt}%
 				}%
 			\fancyhead[L]{
 				\footnotesize %
@@ -645,7 +636,7 @@
 					. {\changeurlcolor{black}%
         					\url{https://doi.org/\@doinum}}%
 					}%
-					\\\vspace{-2pt}\rule{\fulllength}{0.4pt}%
+					\\\vspace{-2pt}\rule{\textwidth}{0.4pt}%
 				}%
 			}%
 		}{
@@ -712,6 +703,11 @@
 					\href{https://www.mdpi.com/journal/\@journal}{
 					\includegraphics[height=1.2cm]{Definitions/\@journal-logo.eps}}%
 					\hfill
+					\ifthenelse{\equal{\@journal}{proceedings}}{
+						\href{https://www.mdpi.com/journal/\@journal}{
+						\includegraphics[height=1.2cm]{Definitions/logo-conference.eps}
+						\hfill}
+						}{}
 					\ifthenelse{\equal{\@journal}{scipharm}}{%
 						\href{https://www.mdpi.com}{\includegraphics[height=1cm]{Definitions/logo-mdpi-scipharm.eps}}%
 						}{%
@@ -791,7 +787,7 @@
 	\leftcolFont
 	\ifthenelse{\equal{\@status}{submit}}{
 		}{%
-		\href{https://www.mdpi.com/article/\@doinum?type=check_update&version=1}{\includegraphics[height=.6cm]{Definitions/logo-updates.eps}}\\
+		\href{https://www.mdpi.com/article/\@doinum?type=check_update&version=1}{\includegraphics[height=.6cm]{Definitions/logo-updates.pdf}}\\
 		}%
 	\raggedright
 	\textbf{Citation:}\papercitation
@@ -829,10 +825,6 @@
 			Published: \@datepublished\\\vspace{-12pt}
 			}{%
 			Received: \@datereceived\\
-			\ifthenelse{\equal{\@daterevised}{\@empty}}{%
-				}{%
-				Revised: \@daterevised\\%
-				}
 			Accepted: \@dateaccepted\\
 			Published: \@datepublished
 			\ifthenelse{\equal{\@datecorrected}{\@empty}}{%
@@ -1033,21 +1025,17 @@
 	\vspace{12pt}
 	\par
 }
-\ifthenelse{\equal{\@addhighlights}{\@empty}}{}{
-	\noindent\textbf{Highlights:\\\vspace{-12pt}}\addhighlights % redefined in .tex to use itemize
-	\vspace{12pt}
-	\par
-}
 \ifthenelse{\equal{\@abstract}{\@empty}}{}{
-	\noindent\textbf{Abstract:\space}\@abstract
-	\vspace{12pt}
-	\par
-}
-\ifthenelse{\equal{\@encyclopediadef}{\@empty}}{}{
-	\noindent\textbf{Definition:\space}\@encyclopediadef
-	\vspace{12pt}
-	\par
-}
+ 	\ifthenelse{\equal{\@journal}{encyclopedia}}{
+    		\noindent\textbf{Definition:\space}\@abstract
+ 		\vspace{12pt}
+ 		\par
+      		}{
+ 		\noindent\textbf{Abstract:\space}\@abstract
+ 		\vspace{12pt}
+ 		\par
+ 	}
+ }
 %10
 % For journal Data:
 \ifthenelse{\equal{\@dataset}{\@empty}}{}{
@@ -1196,7 +1184,7 @@
 \vspace{6pt}\noindent{\fontsize{9}{11.2}\selectfont\textbf{Review Reports:} {#1}\par}}
 
 \newcommand{\abbreviations}[2]{\vspace{12pt}\noindent{\selectfont\textbf{#1}}{%
-\par\vspace{3pt}\hspace{-0.85cm}{\fontsize{9}{11.2}\selectfont #2}\par}}
+\par\vspace{3pt}\hspace{-0.85cm}\noindent{\fontsize{9}{11.2}\selectfont #2}\par}}
 
 % Standby command for adding paragraph in back matter part
 \newcommand{\specialsection}[2]{%
@@ -1398,6 +1386,8 @@
 \captionsetup[boxenv]{position=top, 		labelfont={bf, small, stretch=1.17}, labelsep=period, textfont={small, stretch=1.17}, aboveskip=6pt, singlelinecheck=off, justification=justified}
 
 
+\renewcommand\thesubfigure{\normalfont(\textbf{\alph{subfigure}})}
+
 %% For table footnotes
 \newsavebox{\@justcentbox}
 \newcommand{\justifyorcenter}[1]{
@@ -1468,7 +1458,7 @@
 				}{}%
 			}%
 			}\\%
-			\rule{\fulllength}{0.4pt}%
+			\rule{\textwidth}{0.4pt}%
 		}%
 	}
 	
@@ -1483,7 +1473,7 @@
 			\fontsize{8}{8}\selectfont\thepage%
 		}%
 		}\\%
-		\rule{\fulllength}{0.4pt}%
+		\rule{\textwidth}{0.4pt}%
 	}%
 }
 

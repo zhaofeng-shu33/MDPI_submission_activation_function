@@ -247,6 +247,14 @@ FUNCTION {format.key}
   if$
 }
 
+FUNCTION {format.key}
+{ empty$
+    { key field.or.null }
+    { "" }
+  if$
+}
+
+
 FUNCTION {format.authors}
 { author empty$
     { "" }
@@ -600,13 +608,13 @@ FUNCTION {format.in.ed.booktitle.proc}
     { "" }
     { editor empty$
 	{ edition empty$
-            {"In Proceedings of the " booktitle  *} 
-            {"In Proceedings of the " booktitle  * ", " * edition * " ed." *}
+            {" " booktitle  *} 
+            {" " booktitle  * ", " * edition * " ed." *}
           if$
          }
 	{ edition empty$
-            {"In Proceedings of the " booktitle  * "; " * format.editors * }
-            {"In Proceedings of the " booktitle  * ", " * edition * " ed." * ";  " * format.editors * }
+            {" " booktitle  * "; " * format.editors * }
+            {" " booktitle  * ", " * edition * " ed." * ";  " * format.editors * }
           if$
          }
       if$
@@ -754,10 +762,17 @@ if$
 
 
 %% For printing DOI numbers (it is a hyperlink but printed in black)
+FUNCTION {format.doi}
+{ doi empty$
+  { ""  }
+  {"\href{https://doi.org/" doi * "}" * }
+  if$
+}
+
 FUNCTION {formatfull.doi}
 { doi empty$
   { ""  }
-  {"{\url{https://doi.org/" doi * "}}" * }
+  {"doi:{\changeurlcolor{black}\href{https://doi.org/" doi * "}{\detokenize{" * doi * "}}}" * }
   if$
 }
 
