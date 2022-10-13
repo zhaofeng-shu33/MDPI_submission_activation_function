@@ -99,7 +99,7 @@ $^{2}$ \quad Tsinghua-Berkeley Shenzhen Institute, Shenzhen, China; shaolun.huan
 
 % Current address and/or shared authorship
 \firstnote{Current address: Tsinghua Shenzhen International Graduate School} 
-\secondnote{These authors contributed equally to this work.}
+\secondnote{\deleted{These authors contributed equally to this work.}}
 % The commands \thirdnote{} till \eighthnote{} are available for further notes
 
 %\simplesumm{} % Simple summary
@@ -171,6 +171,7 @@ Hermite polynomials. This demonstrates the role of Hermite polynomials in functi
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{bm}
+\usepackage{changes}
 \input{math.tex}
 \begin{document}
 
@@ -190,7 +191,7 @@ is achieved at $(1-\frac{k}{n})$.
 However, if we introduce a non-linear function $\sigma$ and use
 $\sigma(\sum_{i=1}^k w_i f_i)$ to approximate $g$,
 we can achieve
-an averaged RSS lower than $(1-\frac{k}{n})$. This paper \textbf{quantitatively} investigates
+an averaged RSS lower than $(1-\frac{k}{n})$. This paper \replaced{quantitatively}{\textbf{quantitatively}} investigates
 the RSS
 that the non-linear
 approximator achieves, which is lower than its linear counterpart.
@@ -284,9 +285,13 @@ under certain conditions \cite{ma2005constructive}.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Mathematical Model}\label{sec:mm}
+\section{\replaced{Models and methods}{Mathematical Model}}\label{sec:mm}
 We consider one-node neural network, whose structure is shown in Figure \ref{fig:ns}.
 Its input is a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and it outputs a random variable $Y$.
+\added{The one-node neural network is the output layer in a complex neural network for regression task, where
+$\underline{X}$ is the extracted feature vector by previous layers.
+Though our study focuses on this specific network structure, we enlarge the choice of activation term $\sigma$ to find insights
+for the best choice of activation functions.}
 Our goal is to predict $Y$ using $ \sigma(\sum_{i=1}^k w_i X_i)$.
 For a given sampling result, we have $n$ data pairs $(\underline{x}_1, y_1), \dots, (\underline{x}_n, y_n)$, and
 the $\ell_2$ loss function is given by
@@ -338,7 +343,7 @@ i.e. $\sigma^* = \arg\min_{\sigma \in \mathcal{F}} \mathrm{E}(\sigma)$.
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get analytical insights we should choose some specific distribution.
 Therefore, in the following analysis, we assume:
-\begin{enumerate}
+\begin{enumerate}[label={\arabic*)}]
 \item $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$.
 \item $\bm{X}$ is a $n\times k$ uniformly distributed random orthogonal matrix.
 \item $\underline{Y}$ and $\bm{X}$ are independent.
@@ -352,13 +357,17 @@ we make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underli
 We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$.
 %This completes the definition of the distribution space $G$.
 %Such choice makes it possible for the analytical analysis of the averaged estimation error.
+\added{For assumption 3), notice that when we project a random vector $\underline{Y}$ into a fixed linear subspace,
+$\underline{Y}$ is independent from the fixed space.
+When we are evaluating the representability of non-linear activation, we also choose a scenerario in which the input and output are independent
+to demonstrate that the non-linearity, instead of the correlation, helps to decrease the residual error.}
 Based on the distribution space $G$ by 1)\,-3), for linear function space, we have the following conclusion:
 
 \begin{Proposition}\label{prop:linear}
 We have $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ where $\sigma_0(z) = z$ is the identity function.
 \end{Proposition}
 
-Proposition \ref{prop:linear} says that the averaged MMSE $\mathrm{E}$ for linear function is equal to $(1-\frac{k}{n})$,
+Proposition \ref{prop:linear} says that the averaged \replaced{residue error}{MMSE $\mathrm{E}$} for linear function is equal to $(1-\frac{k}{n})$,
 which is consistent with our intuition
 since we use $k$ degrees of freedom to estimate arbitrary vector in $n$-dimensional space.
 
@@ -434,7 +443,7 @@ Proposition \ref{prop:quadratic} gives a feasible approach to choose the optimal
 m \ll k$ to write $M_{ij}$ in a concise form. This assumption requires that we should choose low degree polynomials as activation function and the number of node $k$ should be relatively large to represent features. Since computational cost
 is proportional to the degree of polynomials and feature dimensions are usually high, our assumption does not lose practicality. 
 
-\section{Hermite Polynomials}\label{sec:hp}
+\section{Hermite \replaced{p}{P}olynomials}\label{sec:hp}
 
 One of our major results is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions.
 (Probabilists') Hermite polynomials, denoted as $H_m(x),m=1,2,\dots$,
@@ -451,7 +460,7 @@ Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $
 Proposition \ref{prop:value} also gives the expression of the minimal asymptotic error rate, which has linear relation with the degree of Hermite polynomials. This result is obtained
 under the assumption $ m \ll k$. In general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
-\section{Experiment Result}\label{sec:er}
+\section{\replaced{Experimental validation and discussions}{Experiment Result}}\label{sec:er}
 
 To verify the change rate of $C[\xi]$ is linear as we increase the maximal degree of polynomials $m$,
 we conduct a simple experiment with $n=180, k=120$. We use $\xi_m(z)$ from Proposition
@@ -480,7 +489,8 @@ higher degree terms contribute more.
 
 In this paper, we have investigated the mechanism of non-linearity in one-node neural network.
 If we add polynomial perturbation to linear activation function,
-the network loss is linearly decreased as the degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
+the network loss is linearly decreased as the degree of polynomial is increased.
+\added{Currently this work only investigates one-node neural network,} \replaced{h}{H}ow non-linearity works in \deleted{more complex} neural networks \added{with more neurons} will be considered in the future. 
 
 %\section{Proofs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -496,7 +506,8 @@ the network loss is linearly decreased as the degree of polynomial is increased.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \authorcontributions{Methodology, validation, formal analysis, writing---original draft preparation: Feng Zhao; Conceptualization,  writing---review and editing, supervision, project administration, funding acquisition:
-Shao-Lun Huang. All authors have read and agreed to the published version of the manuscript.}
+Shao-Lun Huang. \added{These authors contributed equally to this work.}
+All authors have read and agreed to the published version of the manuscript.}
 
 \funding{This research was funded in part by the Shenzhen Science and Technology Program under Grant KQTD20170810150821146, National Key R\&D Program of China under Grant 2021YFA0715202 and High-end Foreign Expert Talent Introduction Plan under Grant G2021032013L.}
 
@@ -715,7 +726,7 @@ we can rewrite $\mathrm{C}[\bm{X}, \xi]$ as:
 
 Since 
 $\xi(z) = \sum_{i=0}^m \underline{q}_i z^i $, we can rewrite $\mathrm{C}[\bm{X}, \xi]$
-as the quadratic form $ \underline{q}^T \bm{M} \underline{q} $.
+as the quadratic form $ \underline{q}^T \bm{M} \underline{q} $\replaced{,}{.}
 where $\bm{M}$ is an $(m+1) \times (m+1) $ random matrix 
 whose element $\bm{M}_{ij}$ is given by
 \begin{align*}

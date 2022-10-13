@@ -1,0 +1,39 @@
+\documentclass[answers]{exam}
+\renewcommand{\solutiontitle}{\noindent\textbf{Answer:}\par\noindent}
+\unframedsolutions
+
+\begin{document}
+\pagestyle{empty}
+Thanks for your careful review of my manuscript. Below is my response to each point you proposed.
+\begin{questions}
+\question
+Major point:
+My major concern is the validity of the distributional assumption.
+The authors assume that $E(Y |X) = 0$,
+that is, the conditional mean of the output $Y$
+is always 0 regardless of a given input value $X$. This is definitely not a meaningful
+regression setup (we do not need the help of $X$ to predict $Y$ ).
+I would like to see
+some justification of the assumption.
+\begin{solution}
+    When we project a random vector $Y$ onto a fixed linear subspace,
+    $Y$ is independent from the fixed space.
+    To make fair comparison between the projection onto a linear space and the projection onto
+    a curved space (which is achieved by the non-linear activation function), we choose a random space which is generated independently from the random vector
+    $Y$. By doing so, we demonstrate that the non-linearity, instead of the correlation between $X$ and $Y$,
+    helps to decrease the residual error.
+\end{solution}
+\question Minor points
+\begin{itemize}
+\item Line 116. What does MMSE E abbreviate?
+\item page 9, the first line. the dot ’.’ before ‘where’ should be a comma ‘,’
+\end{itemize}
+\begin{solution}
+    "MMSE E" is a typo in my paper, and is corrected as 
+    "residue error".
+    For the second point, I have changed the punctuation mark as you suggest.   
+\end{solution}
+\end{questions}
+Besides, I have revised my manuscript to reflect the above changes.
+
+\end{document}
